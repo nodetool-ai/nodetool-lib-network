@@ -4,7 +4,7 @@ from datetime import datetime
 import email
 from email.message import EmailMessage
 
-from nodetool.lib.network.imap import (
+from nodetool.nodes.lib.network.imap import (
     create_gmail_connection,
     decode_bytes_with_fallback,
     fetch_emails,

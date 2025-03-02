@@ -2,7 +2,7 @@ import pytest
 import tempfile
 from unittest.mock import AsyncMock, MagicMock, patch
 
-from nodetool.lib.network.http import (
+from nodetool.nodes.lib.network.http import (
     HTTPBaseNode,
     GetRequest,
     PostRequest,

@@ -3,7 +3,11 @@ from datetime import datetime
 from unittest.mock import patch, MagicMock
 from nodetool.workflows.processing_context import ProcessingContext
 from nodetool.metadata.types import Datetime, RSSEntry
-from nodetool.lib.network.rss import FetchRSSFeed, RSSEntryFields, ExtractFeedMetadata
+from nodetool.nodes.lib.network.rss import (
+    FetchRSSFeed,
+    RSSEntryFields,
+    ExtractFeedMetadata,
+)
 
 
 @pytest.fixture
