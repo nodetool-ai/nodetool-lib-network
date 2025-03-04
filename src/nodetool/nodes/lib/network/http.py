@@ -224,7 +224,7 @@ class FetchPage(BaseNode):
 
 class ImageDownloader(BaseNode):
     """
-    Download images from URLs in a dataframe and return a list of ImageRefs.
+    Download images from list of URLs and return a list of ImageRefs.
     image download, web scraping, data processing
 
     Use cases:
