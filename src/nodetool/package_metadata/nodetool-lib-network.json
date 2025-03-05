@@ -1,0 +1,1634 @@
+{
+  "name": "nodetool-lib-network",
+  "description": "Nodetool Network nodes",
+  "version": "0.6.0",
+  "authors": [
+    "Matthias Georgi <matti.georgi@gmail.com>"
+  ],
+  "nodes": [
+    {
+      "title": "Extract Feed Metadata",
+      "description": "Extracts metadata from an RSS feed.\n    rss, metadata, feed\n    \n    Use cases:\n    - Get feed information\n    - Validate feed details\n    - Extract feed metadata",
+      "namespace": "lib.network.rss",
+      "node_type": "lib.network.rss.ExtractFeedMetadata",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "URL of the RSS feed"
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "dict"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "Fetch RSS Feed",
+      "description": "Fetches and parses an RSS feed from a URL.\n    rss, feed, network\n    \n    Use cases:\n    - Monitor news feeds\n    - Aggregate content from multiple sources\n    - Process blog updates",
+      "namespace": "lib.network.rss",
+      "node_type": "lib.network.rss.FetchRSSFeed",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "URL of the RSS feed to fetch"
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "list",
+            "type_args": [
+              {
+                "type": "rss_entry"
+              }
+            ]
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "Extract RSS Entry Fields",
+      "description": "Extracts fields from an RSS entry.\n    rss, entry, fields",
+      "namespace": "lib.network.rss",
+      "node_type": "lib.network.rss.RSSEntryFields",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "entry",
+          "type": {
+            "type": "rss_entry"
+          },
+          "default": {},
+          "title": "Entry",
+          "description": "The RSS entry to extract fields from."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "str"
+          },
+          "name": "title"
+        },
+        {
+          "type": {
+            "type": "str"
+          },
+          "name": "link"
+        },
+        {
+          "type": {
+            "type": "datetime"
+          },
+          "name": "published"
+        },
+        {
+          "type": {
+            "type": "str"
+          },
+          "name": "summary"
+        },
+        {
+          "type": {
+            "type": "str"
+          },
+          "name": "author"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "entry"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "Base Url",
+      "description": "Extract the base URL from a given URL.\n    url parsing, domain extraction, web utilities\n\n    Use cases:\n    - Get domain name from full URLs\n    - Clean up URLs for comparison\n    - Extract root website addresses\n    - Standardize URL formats",
+      "namespace": "lib.network.beautifulsoup",
+      "node_type": "lib.network.beautifulsoup.BaseUrl",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "URL",
+          "description": "The URL to extract the base from"
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "str"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "Extract Audio",
+      "description": "Extract audio elements from HTML content.\n    extract, audio, src\n\n    Use cases:\n    - Collect audio sources from web pages\n    - Analyze audio usage on websites\n    - Create audio playlists",
+      "namespace": "lib.network.beautifulsoup",
+      "node_type": "lib.network.beautifulsoup.ExtractAudio",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "html",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Html",
+          "description": "The HTML content to extract audio from."
+        },
+        {
+          "name": "base_url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Base Url",
+          "description": "The base URL of the page, used to resolve relative audio URLs."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "list",
+            "type_args": [
+              {
+                "type": "audio"
+              }
+            ]
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "html",
+        "base_url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "Extract Images",
+      "description": "Extract images from HTML content.\n    extract, images, src\n\n    Use cases:\n    - Collect images from web pages\n    - Analyze image usage on websites\n    - Create image galleries",
+      "namespace": "lib.network.beautifulsoup",
+      "node_type": "lib.network.beautifulsoup.ExtractImages",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "html",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Html",
+          "description": "The HTML content to extract images from."
+        },
+        {
+          "name": "base_url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Base Url",
+          "description": "The base URL of the page, used to resolve relative image URLs."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "list",
+            "type_args": [
+              {
+                "type": "image"
+              }
+            ]
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "html",
+        "base_url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "Extract Links",
+      "description": "Extract links from HTML content.\n    extract, links, urls\n\n    Use cases:\n    - Analyze website structure\n    - Discover related content\n    - Build sitemaps",
+      "namespace": "lib.network.beautifulsoup",
+      "node_type": "lib.network.beautifulsoup.ExtractLinks",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "html",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Html",
+          "description": "The HTML content to extract links from."
+        },
+        {
+          "name": "base_url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Base Url",
+          "description": "The base URL of the page, used to determine internal/external links."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "dataframe"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "html",
+        "base_url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "Extract Metadata",
+      "description": "Extract metadata from HTML content.\n    extract, metadata, seo\n\n    Use cases:\n    - Analyze SEO elements\n    - Gather page information\n    - Extract structured data",
+      "namespace": "lib.network.beautifulsoup",
+      "node_type": "lib.network.beautifulsoup.ExtractMetadata",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "html",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Html",
+          "description": "The HTML content to extract metadata from."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "dict"
+          },
+          "name": "metadata"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "html"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "Extract Videos",
+      "description": "Extract videos from HTML content.\n    extract, videos, src\n\n    Use cases:\n    - Collect video sources from web pages\n    - Analyze video usage on websites\n    - Create video playlists",
+      "namespace": "lib.network.beautifulsoup",
+      "node_type": "lib.network.beautifulsoup.ExtractVideos",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "html",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Html",
+          "description": "The HTML content to extract videos from."
+        },
+        {
+          "name": "base_url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Base Url",
+          "description": "The base URL of the page, used to resolve relative video URLs."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "list",
+            "type_args": [
+              {
+                "type": "video"
+              }
+            ]
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "html",
+        "base_url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "Convert HTML to Text",
+      "description": "Converts HTML to plain text by removing tags and decoding entities using BeautifulSoup.\n    html, text, convert\n\n    Use cases:\n    - Cleaning HTML content for text analysis\n    - Extracting readable content from web pages\n    - Preparing HTML data for natural language processing",
+      "namespace": "lib.network.beautifulsoup",
+      "node_type": "lib.network.beautifulsoup.HTMLToText",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "text",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "HTML"
+        },
+        {
+          "name": "preserve_linebreaks",
+          "type": {
+            "type": "bool"
+          },
+          "default": true,
+          "title": "Preserve Line Breaks",
+          "description": "Convert block-level elements to newlines"
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "str"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "text",
+        "preserve_linebreaks"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "Website Content Extractor",
+      "description": "Extract main content from a website, removing navigation, ads, and other non-essential elements.\n    scrape, web scraping, content extraction, text analysis\n\n    Use cases:\n    - Clean web content for further analysis\n    - Extract article text from news websites\n    - Prepare web content for summarization",
+      "namespace": "lib.network.beautifulsoup",
+      "node_type": "lib.network.beautifulsoup.WebsiteContentExtractor",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "html_content",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Html Content",
+          "description": "The raw HTML content of the website."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "str"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "html_content"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "DELETE Request",
+      "description": "Remove a resource from a server using an HTTP DELETE request.\n    http, delete, request, url\n\n    Use cases:\n    - Delete user accounts\n    - Remove API resources\n    - Cancel subscriptions\n    - Clear cache entries",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.DeleteRequest",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "The URL to make the request to."
+        },
+        {
+          "name": "auth",
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "none"
+              }
+            ]
+          },
+          "title": "Auth",
+          "description": "Authentication credentials."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "str"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "Download Files",
+      "description": "Download files from a list of URLs into a local folder.\n    download, files, urls, batch\n\n    Use cases:\n    - Batch download files from multiple URLs\n    - Create local copies of remote resources\n    - Archive web content\n    - Download datasets",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.DownloadFiles",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "urls",
+          "type": {
+            "type": "list",
+            "type_args": [
+              {
+                "type": "str"
+              }
+            ]
+          },
+          "default": [],
+          "title": "Urls",
+          "description": "List of URLs to download."
+        },
+        {
+          "name": "output_folder",
+          "type": {
+            "type": "file_path"
+          },
+          "default": "downloads",
+          "title": "Output Folder",
+          "description": "Local folder path where files will be saved."
+        },
+        {
+          "name": "auth",
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "none"
+              }
+            ]
+          },
+          "title": "Auth",
+          "description": "Authentication credentials."
+        },
+        {
+          "name": "max_concurrent_downloads",
+          "type": {
+            "type": "int"
+          },
+          "default": 5,
+          "title": "Max Concurrent Downloads",
+          "description": "Maximum number of concurrent downloads."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "list",
+            "type_args": [
+              {
+                "type": "str"
+              }
+            ]
+          },
+          "name": "success"
+        },
+        {
+          "type": {
+            "type": "list",
+            "type_args": [
+              {
+                "type": "str"
+              }
+            ]
+          },
+          "name": "failed"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "urls",
+        "output_folder",
+        "auth",
+        "max_concurrent_downloads"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "Fetch Page",
+      "description": "Fetch a web page using Selenium and return its content.\n    selenium, fetch, webpage, http\n\n    Use cases:\n    - Retrieve content from dynamic websites\n    - Capture JavaScript-rendered content\n    - Interact with web applications",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.FetchPage",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "The URL to fetch the page from."
+        },
+        {
+          "name": "wait_time",
+          "type": {
+            "type": "int"
+          },
+          "default": 10,
+          "title": "Wait Time",
+          "description": "Maximum time to wait for page load (in seconds)."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "str"
+          },
+          "name": "html"
+        },
+        {
+          "type": {
+            "type": "bool"
+          },
+          "name": "success"
+        },
+        {
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "none"
+              }
+            ]
+          },
+          "name": "error_message"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url",
+        "wait_time"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "Filter Valid URLs",
+      "description": "Filter a list of URLs by checking their validity using HEAD requests.\n    url validation, http, head request\n\n    Use cases:\n    - Clean URL lists by removing broken links\n    - Verify resource availability\n    - Validate website URLs before processing",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.FilterValidURLs",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "The URL to make the request to."
+        },
+        {
+          "name": "auth",
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "none"
+              }
+            ]
+          },
+          "title": "Auth",
+          "description": "Authentication credentials."
+        },
+        {
+          "name": "urls",
+          "type": {
+            "type": "list",
+            "type_args": [
+              {
+                "type": "str"
+              }
+            ]
+          },
+          "default": [],
+          "title": "Urls",
+          "description": "List of URLs to validate."
+        },
+        {
+          "name": "max_concurrent_requests",
+          "type": {
+            "type": "int"
+          },
+          "default": 10,
+          "title": "Max Concurrent Requests",
+          "description": "Maximum number of concurrent HEAD requests."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "list",
+            "type_args": [
+              {
+                "type": "str"
+              }
+            ]
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "GET Request",
+      "description": "Perform an HTTP GET request to retrieve data from a specified URL.\n    http, get, request, url\n\n    Use cases:\n    - Fetch web page content\n    - Retrieve API data\n    - Download files\n    - Check website availability",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.GetRequest",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "The URL to make the request to."
+        },
+        {
+          "name": "auth",
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "none"
+              }
+            ]
+          },
+          "title": "Auth",
+          "description": "Authentication credentials."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "str"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "GET Binary",
+      "description": "Perform an HTTP GET request and return raw binary data.\n    http, get, request, url, binary, download\n\n    Use cases:\n    - Download binary files\n    - Fetch images or media\n    - Retrieve PDF documents\n    - Download any non-text content",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.GetRequestBinary",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "The URL to make the request to."
+        },
+        {
+          "name": "auth",
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "none"
+              }
+            ]
+          },
+          "title": "Auth",
+          "description": "Authentication credentials."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "bytes"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "GET Document",
+      "description": "Perform an HTTP GET request and return a document\n    http, get, request, url, document\n\n    Use cases:\n    - Download PDF documents\n    - Retrieve Word documents\n    - Fetch Excel files\n    - Download any document format",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.GetRequestDocument",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "The URL to make the request to."
+        },
+        {
+          "name": "auth",
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "none"
+              }
+            ]
+          },
+          "title": "Auth",
+          "description": "Authentication credentials."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "document"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "HTTPBase",
+      "description": "",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.HTTPBase",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "The URL to make the request to."
+        },
+        {
+          "name": "auth",
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "none"
+              }
+            ]
+          },
+          "title": "Auth",
+          "description": "Authentication credentials."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "any"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "HEAD Request",
+      "description": "Retrieve headers from a resource using an HTTP HEAD request.\n    http, head, request, url\n\n    Use cases:\n    - Check resource existence\n    - Get metadata without downloading content\n    - Verify authentication or permissions",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.HeadRequest",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "The URL to make the request to."
+        },
+        {
+          "name": "auth",
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "none"
+              }
+            ]
+          },
+          "title": "Auth",
+          "description": "Authentication credentials."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "dict",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "str"
+              }
+            ]
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "Image Downloader",
+      "description": "Download images from list of URLs and return a list of ImageRefs.\n    image download, web scraping, data processing\n\n    Use cases:\n    - Prepare image datasets for machine learning tasks\n    - Archive images from web pages\n    - Process and analyze images extracted from websites",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.ImageDownloader",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "images",
+          "type": {
+            "type": "list",
+            "type_args": [
+              {
+                "type": "str"
+              }
+            ]
+          },
+          "default": [],
+          "title": "Images",
+          "description": "List of image URLs to download."
+        },
+        {
+          "name": "base_url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Base Url",
+          "description": "Base URL to prepend to relative image URLs."
+        },
+        {
+          "name": "max_concurrent_downloads",
+          "type": {
+            "type": "int"
+          },
+          "default": 10,
+          "title": "Max Concurrent Downloads",
+          "description": "Maximum number of concurrent image downloads."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "list",
+            "type_args": [
+              {
+                "type": "image"
+              }
+            ]
+          },
+          "name": "images"
+        },
+        {
+          "type": {
+            "type": "list",
+            "type_args": [
+              {
+                "type": "str"
+              }
+            ]
+          },
+          "name": "failed_urls"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "images",
+        "base_url",
+        "max_concurrent_downloads"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "GET JSON",
+      "description": "Perform an HTTP GET request and parse the response as JSON.\n    http, get, request, url, json, api\n\n    Use cases:\n    - Fetch data from REST APIs\n    - Retrieve JSON-formatted responses\n    - Interface with JSON web services",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.JSONGetRequest",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "The URL to make the request to."
+        },
+        {
+          "name": "auth",
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "none"
+              }
+            ]
+          },
+          "title": "Auth",
+          "description": "Authentication credentials."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "dict"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "PATCH JSON",
+      "description": "Partially update resources with JSON data using an HTTP PATCH request.\n    http, patch, request, url, json, api\n\n    Use cases:\n    - Partial updates to API resources\n    - Modify specific fields without full replacement\n    - Efficient updates for large objects",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.JSONPatchRequest",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "The URL to make the request to."
+        },
+        {
+          "name": "auth",
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "none"
+              }
+            ]
+          },
+          "title": "Auth",
+          "description": "Authentication credentials."
+        },
+        {
+          "name": "data",
+          "type": {
+            "type": "dict"
+          },
+          "default": {},
+          "title": "Data",
+          "description": "The JSON data to send in the PATCH request."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "dict"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "POST JSON",
+      "description": "Send JSON data to a server using an HTTP POST request.\n    http, post, request, url, json, api\n\n    Use cases:\n    - Send structured data to REST APIs\n    - Create resources with JSON payloads\n    - Interface with modern web services",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.JSONPostRequest",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "The URL to make the request to."
+        },
+        {
+          "name": "auth",
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "none"
+              }
+            ]
+          },
+          "title": "Auth",
+          "description": "Authentication credentials."
+        },
+        {
+          "name": "data",
+          "type": {
+            "type": "dict"
+          },
+          "default": {},
+          "title": "Data",
+          "description": "The JSON data to send in the POST request."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "dict"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "PUT JSON",
+      "description": "Update resources with JSON data using an HTTP PUT request.\n    http, put, request, url, json, api\n\n    Use cases:\n    - Update existing API resources\n    - Replace complete objects in REST APIs\n    - Set configuration with JSON data",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.JSONPutRequest",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "The URL to make the request to."
+        },
+        {
+          "name": "auth",
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "none"
+              }
+            ]
+          },
+          "title": "Auth",
+          "description": "Authentication credentials."
+        },
+        {
+          "name": "data",
+          "type": {
+            "type": "dict"
+          },
+          "default": {},
+          "title": "Data",
+          "description": "The JSON data to send in the PUT request."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "dict"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "POST Request",
+      "description": "Send data to a server using an HTTP POST request.\n    http, post, request, url, data\n\n    Use cases:\n    - Submit form data\n    - Create new resources on an API\n    - Upload files\n    - Authenticate users",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.PostRequest",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "The URL to make the request to."
+        },
+        {
+          "name": "auth",
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "none"
+              }
+            ]
+          },
+          "title": "Auth",
+          "description": "Authentication credentials."
+        },
+        {
+          "name": "data",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Data",
+          "description": "The data to send in the POST request."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "str"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "POST Binary",
+      "description": "Send data using an HTTP POST request and return raw binary data.\n    http, post, request, url, data, binary\n\n    Use cases:\n    - Upload and receive binary files\n    - Interact with binary APIs\n    - Process image or media uploads\n    - Handle binary file transformations",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.PostRequestBinary",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "The URL to make the request to."
+        },
+        {
+          "name": "auth",
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "none"
+              }
+            ]
+          },
+          "title": "Auth",
+          "description": "Authentication credentials."
+        },
+        {
+          "name": "data",
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "bytes"
+              }
+            ]
+          },
+          "default": "",
+          "title": "Data",
+          "description": "The data to send in the POST request. Can be string or binary."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "bytes"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "PUT Request",
+      "description": "Update existing resources on a server using an HTTP PUT request.\n    http, put, request, url, data\n\n    Use cases:\n    - Update user profiles\n    - Modify existing API resources\n    - Replace file contents\n    - Set configuration values",
+      "namespace": "lib.network.http",
+      "node_type": "lib.network.http.PutRequest",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "url",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Url",
+          "description": "The URL to make the request to."
+        },
+        {
+          "name": "auth",
+          "type": {
+            "type": "union",
+            "type_args": [
+              {
+                "type": "str"
+              },
+              {
+                "type": "none"
+              }
+            ]
+          },
+          "title": "Auth",
+          "description": "Authentication credentials."
+        },
+        {
+          "name": "data",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Data",
+          "description": "The data to send in the PUT request."
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "str"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "url"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "Configure IMAP",
+      "description": "Creates an IMAP configuration for email operations.\n    email, imap, config\n\n    Use cases:\n    - Set up email access credentials\n    - Enable programmatic email access",
+      "namespace": "lib.network.imap",
+      "node_type": "lib.network.imap.ConfigureIMAP",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "host",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Host",
+          "description": "IMAP server hostname (e.g. imap.gmail.com)"
+        },
+        {
+          "name": "port",
+          "type": {
+            "type": "int"
+          },
+          "default": 993,
+          "title": "Port",
+          "description": "IMAP server port"
+        },
+        {
+          "name": "username",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Username",
+          "description": "Email account username"
+        },
+        {
+          "name": "password",
+          "type": {
+            "type": "str"
+          },
+          "default": "",
+          "title": "Password",
+          "description": "Email account password"
+        },
+        {
+          "name": "use_ssl",
+          "type": {
+            "type": "bool"
+          },
+          "default": true,
+          "title": "Use Ssl",
+          "description": "Whether to use SSL/TLS connection"
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "imap_connection"
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "host",
+        "port",
+        "username",
+        "password",
+        "use_ssl"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "Email Fields",
+      "description": "Decomposes an email into its individual components.\n    email, decompose, extract\n\n    Takes an Email object and returns its individual fields:\n    - id: Message ID\n    - subject: Email subject\n    - sender: Sender address\n    - date: Datetime of email\n    - body: Email body content",
+      "namespace": "lib.network.imap",
+      "node_type": "lib.network.imap.EmailFields",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "email",
+          "type": {
+            "type": "email"
+          },
+          "title": "Email",
+          "description": "Email object to decompose"
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "str"
+          },
+          "name": "id"
+        },
+        {
+          "type": {
+            "type": "str"
+          },
+          "name": "subject"
+        },
+        {
+          "type": {
+            "type": "str"
+          },
+          "name": "sender"
+        },
+        {
+          "type": {
+            "type": "datetime"
+          },
+          "name": "date"
+        },
+        {
+          "type": {
+            "type": "str"
+          },
+          "name": "body"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "email"
+      ],
+      "is_dynamic": false
+    },
+    {
+      "title": "IMAPSearch",
+      "description": "Searches IMAP using IMAP-specific search operators.\n    email, imap, search\n\n    Returns emails with following fields:\n    - id: Message ID\n    - subject: Email subject\n    - from: Sender address\n    - date: Datetime of email\n    - body: Email body content\n\n    Use cases:\n    - Search for emails based on specific criteria\n    - Retrieve emails from a specific sender\n    - Filter emails by subject, sender, or date",
+      "namespace": "lib.network.imap",
+      "node_type": "lib.network.imap.IMAPSearch",
+      "layout": "default",
+      "properties": [
+        {
+          "name": "connection",
+          "type": {
+            "type": "imap_connection"
+          },
+          "default": {},
+          "title": "Connection",
+          "description": "IMAP connection details"
+        },
+        {
+          "name": "search_criteria",
+          "type": {
+            "type": "email_search_criteria"
+          },
+          "default": {},
+          "title": "Search Criteria",
+          "description": "Search criteria"
+        },
+        {
+          "name": "max_results",
+          "type": {
+            "type": "int"
+          },
+          "default": 50,
+          "title": "Max Results",
+          "description": "Maximum number of emails to return"
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "type": "list",
+            "type_args": [
+              {
+                "type": "email"
+              }
+            ]
+          },
+          "name": "output"
+        }
+      ],
+      "the_model_info": {},
+      "recommended_models": [],
+      "basic_fields": [
+        "connection",
+        "search_criteria",
+        "max_results"
+      ],
+      "is_dynamic": false
+    }
+  ]
+}
