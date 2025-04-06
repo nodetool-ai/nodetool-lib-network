@@ -467,22 +467,6 @@
           "default": "",
           "title": "Url",
           "description": "The URL to make the request to."
-        },
-        {
-          "name": "auth",
-          "type": {
-            "type": "union",
-            "type_args": [
-              {
-                "type": "str"
-              },
-              {
-                "type": "none"
-              }
-            ]
-          },
-          "title": "Auth",
-          "description": "Authentication credentials."
         }
       ],
       "outputs": [
@@ -526,7 +510,9 @@
           "type": {
             "type": "file_path"
           },
-          "default": "downloads",
+          "default": {
+            "path": "downloads"
+          },
           "title": "Output Folder",
           "description": "Local folder path where files will be saved."
         },
@@ -669,22 +655,6 @@
           "description": "The URL to make the request to."
         },
         {
-          "name": "auth",
-          "type": {
-            "type": "union",
-            "type_args": [
-              {
-                "type": "str"
-              },
-              {
-                "type": "none"
-              }
-            ]
-          },
-          "title": "Auth",
-          "description": "Authentication credentials."
-        },
-        {
           "name": "urls",
           "type": {
             "type": "list",
@@ -743,22 +713,6 @@
           "default": "",
           "title": "Url",
           "description": "The URL to make the request to."
-        },
-        {
-          "name": "auth",
-          "type": {
-            "type": "union",
-            "type_args": [
-              {
-                "type": "str"
-              },
-              {
-                "type": "none"
-              }
-            ]
-          },
-          "title": "Auth",
-          "description": "Authentication credentials."
         }
       ],
       "outputs": [
@@ -791,22 +745,6 @@
           "default": "",
           "title": "Url",
           "description": "The URL to make the request to."
-        },
-        {
-          "name": "auth",
-          "type": {
-            "type": "union",
-            "type_args": [
-              {
-                "type": "str"
-              },
-              {
-                "type": "none"
-              }
-            ]
-          },
-          "title": "Auth",
-          "description": "Authentication credentials."
         }
       ],
       "outputs": [
@@ -839,22 +777,6 @@
           "default": "",
           "title": "Url",
           "description": "The URL to make the request to."
-        },
-        {
-          "name": "auth",
-          "type": {
-            "type": "union",
-            "type_args": [
-              {
-                "type": "str"
-              },
-              {
-                "type": "none"
-              }
-            ]
-          },
-          "title": "Auth",
-          "description": "Authentication credentials."
         }
       ],
       "outputs": [
@@ -887,22 +809,6 @@
           "default": "",
           "title": "Url",
           "description": "The URL to make the request to."
-        },
-        {
-          "name": "auth",
-          "type": {
-            "type": "union",
-            "type_args": [
-              {
-                "type": "str"
-              },
-              {
-                "type": "none"
-              }
-            ]
-          },
-          "title": "Auth",
-          "description": "Authentication credentials."
         }
       ],
       "outputs": [
@@ -935,22 +841,6 @@
           "default": "",
           "title": "Url",
           "description": "The URL to make the request to."
-        },
-        {
-          "name": "auth",
-          "type": {
-            "type": "union",
-            "type_args": [
-              {
-                "type": "str"
-              },
-              {
-                "type": "none"
-              }
-            ]
-          },
-          "title": "Auth",
-          "description": "Authentication credentials."
         }
       ],
       "outputs": [
@@ -1064,22 +954,6 @@
           "default": "",
           "title": "Url",
           "description": "The URL to make the request to."
-        },
-        {
-          "name": "auth",
-          "type": {
-            "type": "union",
-            "type_args": [
-              {
-                "type": "str"
-              },
-              {
-                "type": "none"
-              }
-            ]
-          },
-          "title": "Auth",
-          "description": "Authentication credentials."
         }
       ],
       "outputs": [
@@ -1112,22 +986,6 @@
           "default": "",
           "title": "Url",
           "description": "The URL to make the request to."
-        },
-        {
-          "name": "auth",
-          "type": {
-            "type": "union",
-            "type_args": [
-              {
-                "type": "str"
-              },
-              {
-                "type": "none"
-              }
-            ]
-          },
-          "title": "Auth",
-          "description": "Authentication credentials."
         },
         {
           "name": "data",
@@ -1171,22 +1029,6 @@
           "description": "The URL to make the request to."
         },
         {
-          "name": "auth",
-          "type": {
-            "type": "union",
-            "type_args": [
-              {
-                "type": "str"
-              },
-              {
-                "type": "none"
-              }
-            ]
-          },
-          "title": "Auth",
-          "description": "Authentication credentials."
-        },
-        {
           "name": "data",
           "type": {
             "type": "dict"
@@ -1226,22 +1068,6 @@
           "default": "",
           "title": "Url",
           "description": "The URL to make the request to."
-        },
-        {
-          "name": "auth",
-          "type": {
-            "type": "union",
-            "type_args": [
-              {
-                "type": "str"
-              },
-              {
-                "type": "none"
-              }
-            ]
-          },
-          "title": "Auth",
-          "description": "Authentication credentials."
         },
         {
           "name": "data",
@@ -1285,22 +1111,6 @@
           "description": "The URL to make the request to."
         },
         {
-          "name": "auth",
-          "type": {
-            "type": "union",
-            "type_args": [
-              {
-                "type": "str"
-              },
-              {
-                "type": "none"
-              }
-            ]
-          },
-          "title": "Auth",
-          "description": "Authentication credentials."
-        },
-        {
           "name": "data",
           "type": {
             "type": "str"
@@ -1340,22 +1150,6 @@
           "default": "",
           "title": "Url",
           "description": "The URL to make the request to."
-        },
-        {
-          "name": "auth",
-          "type": {
-            "type": "union",
-            "type_args": [
-              {
-                "type": "str"
-              },
-              {
-                "type": "none"
-              }
-            ]
-          },
-          "title": "Auth",
-          "description": "Authentication credentials."
         },
         {
           "name": "data",
@@ -1405,22 +1199,6 @@
           "default": "",
           "title": "Url",
           "description": "The URL to make the request to."
-        },
-        {
-          "name": "auth",
-          "type": {
-            "type": "union",
-            "type_args": [
-              {
-                "type": "str"
-              },
-              {
-                "type": "none"
-              }
-            ]
-          },
-          "title": "Auth",
-          "description": "Authentication credentials."
         },
         {
           "name": "data",

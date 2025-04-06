@@ -254,7 +254,7 @@ class EmailFields(BaseNode):
     - body: Email body content
     """
 
-    email: Email = Field(default=None, description="Email object to decompose")
+    email: Email = Field(default=Email(), description="Email object to decompose")
 
     @classmethod
     def return_type(cls):

@@ -31,16 +31,13 @@ class HTTPBaseNode(BaseNode):
         default="",
         description="The URL to make the request to.",
     )
-    auth: str | None = Field(default=None, description="Authentication credentials.")
 
     @classmethod
     def is_visible(cls) -> bool:
         return cls is not HTTPBaseNode
 
     def get_request_kwargs(self) -> dict[str, Any]:
-        return {
-            "auth": self.auth,
-        }
+        return {}
 
     @classmethod
     def get_basic_fields(cls):
@@ -458,19 +455,16 @@ class DownloadFiles(BaseNode):
         description="List of URLs to download.",
     )
     output_folder: FilePath = Field(
-        default="downloads",
+        default=FilePath(path="downloads"),
         description="Local folder path where files will be saved.",
     )
-    auth: str | None = Field(default=None, description="Authentication credentials.")
 
     @classmethod
     def is_visible(cls) -> bool:
         return cls is not HTTPBaseNode
 
     def get_request_kwargs(self) -> dict[str, Any]:
-        return {
-            "auth": self.auth,
-        }
+        return {}
 
     max_concurrent_downloads: int = Field(
         default=5,
@@ -593,7 +587,6 @@ class JSONPostRequest(HTTPBaseNode):
             headers={
                 "Content-Type": "application/json",
             },
-            auth=self.auth,
         )
         return res.json()
 
@@ -624,7 +617,6 @@ class JSONPutRequest(HTTPBaseNode):
             self.url,
             json=self.data,
             headers=headers,
-            auth=self.auth,
         )
         return res.json()
 
@@ -655,7 +647,6 @@ class JSONPatchRequest(HTTPBaseNode):
             self.url,
             json=self.data,
             headers=headers,
-            auth=self.auth,
         )
         return res.json()
 
@@ -680,6 +671,5 @@ class JSONGetRequest(HTTPBaseNode):
         res = await context.http_get(
             self.url,
             headers=headers,
-            auth=self.auth,
         )
         return res.json()

@@ -2,10 +2,8 @@ import asyncio
 from nodetool.dsl.graph import graph, run_graph
 from nodetool.dsl.lib.network.http import GetRequest
 from nodetool.dsl.nodetool.text import (
-    Join,
     FindAllRegex,
 )
-from nodetool.metadata.types import FolderRef
 from nodetool.dsl.nodetool.output import ListOutput
 
 # Create the workflow graph
